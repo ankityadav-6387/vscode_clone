@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <div id="main">
+    <div id="popup">
+      <div id="popupcard">
+        <h3>Change Name</h3>
+        <hr>
+        <form action="/rename/filename" method="post">
+          <input id="inp" name="newname" type="text">
+          <input id="submit" type="submit" value="Change kro">
+        </form>
+      </div>
+
+    </div>
+    <div id="left">
+      <div id="filedets">
+        <h3>Folder Name</h3>
+        <div id="icon">
+          <i id="fileicon" class="ri-add-line"></i>
+          <i id="foldericon" class="ri-folder-fill"></i>
+          <i class="ri-refresh-line"></i>
+        </div>
+      </div>
+      <div id="files">
+        <form id="fileform" action="/createfile">
+          <input type="text" name="filename" placeholder="filename">
+        </form>
+        <form id="folderform" action="/createfolder">
+          <input type="text" name="foldername" placeholder="foldername">
+        </form>
+        <% elem.forEach(function(el){ %>
+          <div class="elem">
+            <div class="elleft">
+              <% if(el.isDirectory()){ %>
+                <i class="ri-folder-line"></i>
+                <%= el.name %>
+              <% } else { %>
+                <a href="/file/<%= el.name %>">
+                  <i class="ri-file-3-line"></i>
+                  <%= el.name %>
+                </a>
+              <% } %>
+            </div>
+            <div class="elright">
+              <i id="edit" class="ri-pencil-fill"></i>
+              <% if(el.isDirectory()){ %>
+                <a href="/delete/folder/<%= el.name %>"><i class="ri-delete-bin-7-line"></i></a>
+              <% } else { %>
+                <a href="/delete/file/<%= el.name %>"><i class="ri-delete-bin-7-line"></i></a>
+              <% } %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+    <div id="right">
+      <small>no files here.</small>
+    </div>
+  </div>
+  <script src="../javascripts/script.js"></script>
+<!--   
+  <script>
+
+
+    // function donooffkardo(){
+    //   document.querySelectorAll('#files form')
+    //   forEach(function(frm){
+    //     frm.style.display = 'none'
+    //   })
+    // }
+
+
+
+    // document.querySelectorAll("#fileicon")
+    // .addEventListener('click',function(){
+    //   // donooffkardo();
+    //   document.querySelector('#fileform').style.display = 'block'
+    // })
+
+    // document.querySelectorAll("#foldericon")
+    // .addEventListener('click',function(){
+    //   // donooffkardo();
+    //   document.querySelector('#folderform').style.display = 'block'
+    // })
+
+     var a = document.querySelectorAll('#fileicon')
+    a.addEventListener('click',function(){
+      a.inerHtml='<i class="ri-refresh-line"></i>'
+      document.querySelector('#fileform').style.display = 'initial'
+    })
+  </script> -->
+</body>
+</html>
